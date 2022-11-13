@@ -1,0 +1,96 @@
+package bank.management.system;
+
+import javax.swing.*;
+import java.awt.*;
+import java.sql.*;
+
+public class MiniStatement extends JFrame {
+       
+    
+    
+    MiniStatement(String pinNumber){
+      
+       
+       setLayout(null);
+       
+       setTitle("Mini Statement");
+       
+       ImageIcon i1= new ImageIcon(ClassLoader.getSystemResource("icon/logo.jpg"));
+       Image i2 = i1.getImage().getScaledInstance(60, 40, Image.SCALE_DEFAULT);
+       ImageIcon i3 = new ImageIcon(i2);
+       JLabel label = new JLabel(i3);
+       label.setBounds(45, 10, 60, 40);
+       add(label);
+       
+       JLabel bankName = new JLabel("Asthaa Bank");
+       bankName.setFont(new Font("calibri", Font.BOLD, 9));
+       bankName.setBounds(54, 52, 60, 9);
+       add(bankName);
+       
+       JLabel mini = new JLabel();
+       mini.setBounds(60, 140, 400, 200);
+       add(mini);
+       
+       JLabel bankNameTwo = new JLabel("Asthaa Bank");
+       bankNameTwo.setBounds(200, 32, 100, 20);
+       add(bankNameTwo);
+       
+       JLabel card = new JLabel();
+       card.setBounds(60, 80, 250, 20);
+       add(card);
+       
+       JLabel balance = new JLabel();
+       balance.setBounds(60, 380, 300, 20);
+       add(balance);
+       
+       
+       
+       try{
+       
+           Conn conn = new Conn();
+           String query = "select * from login where pin_number = '"+pinNumber+"'";
+           ResultSet rs = conn.s1.executeQuery(query);
+           
+           while(rs.next()){
+               
+               card.setText("Card Number: " + rs.getString("card_number").substring(0,4) + "-XXXX-XXXX-" + rs.getString("card_number").substring(12));
+           }
+       
+       }catch(Exception e){ 
+           System.out.println(e);
+       }
+       
+       
+       try{
+          
+           Conn conn = new Conn();
+           int bal = 0;
+           String query = "select * from bank where pin_number = '"+pinNumber+"'";
+           ResultSet rs = conn.s1.executeQuery(query);
+           
+           while(rs.next()){
+               
+               mini.setText(mini.getText() + "<html>" + rs.getString("date") + "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" + rs.getString("type") + "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" + rs.getString("amount") + "<br><br><br><html>");
+           if(rs.getString("type").equals("Deposit")){
+                           bal += Integer.parseInt(rs.getString("amount"));
+                     }else{ 
+                         bal -= Integer.parseInt(rs.getString("amount"));
+                       }
+           }
+           balance.setText("Your current account balance is Rs " + bal);
+       
+       }catch(Exception e){
+           System.out.println(e);
+       }
+       setSize(500,600);
+       setLocation(500,20);
+       getContentPane().setBackground(Color.WHITE);
+       setResizable(false);
+       setVisible(true);
+    }
+    
+    public static void main (String[] args){
+       new MiniStatement("");
+    }
+    
+}
