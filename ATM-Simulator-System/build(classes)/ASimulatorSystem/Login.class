@@ -1,0 +1,130 @@
+package bank.management.system;
+
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.*;
+import java.sql.*;
+
+public class Login extends JFrame implements ActionListener{
+    
+    JButton login, clear, signup;
+    JTextField cardTextField;
+    JPasswordField pinTextField;
+    Login(){
+        
+       setTitle("AUTOMATED TELLER MACHINE");
+       
+       setLayout(null);
+       
+       ImageIcon i1= new ImageIcon(ClassLoader.getSystemResource("icon/logo.jpg"));
+       Image i2 = i1.getImage().getScaledInstance(100, 70, Image.SCALE_DEFAULT);
+       ImageIcon i3 = new ImageIcon(i2);
+       JLabel label = new JLabel(i3);
+       label.setBounds(103, 22, 100, 70);
+       add(label);
+       
+       JLabel bankName = new JLabel("Asthaa Bank");
+       bankName.setFont(new Font("calibri", Font.BOLD, 15));
+       bankName.setBounds(116, 92, 100, 15);
+       add(bankName);
+       
+       JLabel text = new JLabel("Welcome to ATM");
+       text.setFont(new Font("Osward", Font.BOLD, 38));
+       text.setBounds(260, 60, 400, 40);
+       add(text);
+       
+       JLabel cardno = new JLabel("Card No:");
+       cardno.setFont(new Font("Raleway", Font.BOLD, 22));
+       cardno.setBounds(145, 170, 150, 30);
+       add(cardno);
+       
+       cardTextField = new JTextField();
+       cardTextField.setBounds(290, 170, 250, 30);
+       cardTextField.setFont(new Font("Raleway", Font.PLAIN, 15));
+       add(cardTextField);
+       
+       JLabel pin = new JLabel("PIN:");
+       pin.setFont(new Font("Raleway", Font.BOLD, 22));
+       pin.setBounds(195, 230, 400, 30);
+       add(pin);
+       
+       pinTextField = new JPasswordField();
+       pinTextField.setBounds(290, 230, 250, 30);
+       pinTextField.setFont(new Font("Raleway", Font.PLAIN, 15));
+       add(pinTextField);
+       
+       login = new JButton("SIGN IN");
+       login.setBounds(290, 300, 100, 30);
+       login.setBackground(Color.BLACK);
+       login.setForeground(Color.WHITE);
+       login.addActionListener(this);
+       add(login);
+       
+       clear = new JButton("CLEAR");
+       clear.setBounds(440, 300, 100, 30);
+       clear.setBackground(Color.BLACK);
+       clear.setForeground(Color.WHITE);
+       clear.addActionListener(this);
+       add(clear);
+       
+       JLabel noAccount = new JLabel("don't have an account?");
+       noAccount.setFont(new Font("Raleway", Font.PLAIN, 12));
+       noAccount.setBounds(355, 354, 160, 12);
+       add(noAccount);
+       
+       signup = new JButton("SIGN UP");
+       signup.setBounds(290, 370, 250, 30);
+       signup.setBackground(Color.BLACK);
+       signup.setForeground(Color.WHITE);
+       signup.addActionListener(this);
+       add(signup);
+       
+       getContentPane().setBackground(Color.WHITE);
+       
+       setSize(800, 480);
+       setLocation(350, 200);
+       setResizable(false);
+       setVisible(true);
+    }
+    
+    
+    public void actionPerformed(ActionEvent ae){
+      if (ae.getSource() == clear){
+            cardTextField.setText("");
+            pinTextField.setText("");
+      }else if (ae.getSource() == login){
+          
+          Conn conn = new Conn();
+          String cardNumber = cardTextField.getText();
+          String pinNumber = pinTextField.getText();
+          String query = "select * from login where card_number = '"+cardNumber+"' and pin_number = '"+pinNumber+"' ";
+          
+          try{
+             ResultSet rs = conn.s1.executeQuery(query);
+             if(rs.next()){
+                setVisible(false);
+                new Transaction(pinNumber).setVisible(true);
+             }else if(cardNumber.equals("") && !pinNumber.equals("")){               
+                 JOptionPane.showMessageDialog(null, "Please enter Card number", "Warning!", JOptionPane.WARNING_MESSAGE);
+             }else if(pinNumber.equals("") && !cardNumber.equals("") ){               
+                 JOptionPane.showMessageDialog(null, "Please enter PIN", "Warning!", JOptionPane.WARNING_MESSAGE);
+             }else if(pinNumber.equals("") && cardNumber.equals("")){               
+                 JOptionPane.showMessageDialog(null, "Please enter Card number or PIN", "Warning!", JOptionPane.WARNING_MESSAGE);
+             }else {
+                  JOptionPane.showMessageDialog(null, "Incorrect Card number or PIN", "Error!", JOptionPane.ERROR_MESSAGE);
+             }
+          }catch(Exception e){
+            System.out.println(e);
+          }
+      
+      }else if (ae.getSource() == signup){
+          setVisible(false);
+          new SignupOne().setVisible(true);
+      }
+    }
+    
+    public static void main(String[] args) {
+        new Login();
+    }
+    
+}
