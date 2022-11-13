@@ -1,0 +1,24 @@
+
+package bank.management.system;
+
+import java.sql.*;
+
+public class Conn {
+    
+    Connection c1;
+    Statement s1;
+    
+    public Conn(){
+       try{
+           
+         
+           c1 = DriverManager.getConnection("jdbc:mysql:///BankManagementSystem2", "root", "Pritish@3719");
+           s1 = c1.createStatement();
+           
+       }catch(Exception e){
+       
+         System.out.println(e);
+       }
+    }
+    
+}
