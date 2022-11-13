@@ -1,0 +1,239 @@
+package bank.management.system;
+
+import java.awt.*;
+import javax.swing.*;
+import java.util.*;
+import java.awt.event.*;
+
+public class SignupTwo extends JFrame implements ActionListener {
+
+    JButton next;
+    JRadioButton yesSenior, noSenior, yesAccount, noAccount;
+    JComboBox religionBox, categoryBox, incomeBox, educationBox, occupationBox;
+    JTextField panTextField, aadharTextField;
+    ButtonGroup seniorGroup, accountGroup;
+    String formno;
+
+    SignupTwo(String formno) {
+
+        this.formno = formno;
+
+        setLayout(null);
+
+        setTitle("NEW ACCOUNT APPLICATION FORM - PAGE 2");
+
+        ImageIcon i7 = new ImageIcon(ClassLoader.getSystemResource("icon/logo.jpg"));
+        Image i8 = i7.getImage().getScaledInstance(90, 63, Image.SCALE_DEFAULT);
+        ImageIcon i9 = new ImageIcon(i8);
+        JLabel label = new JLabel(i9);
+        label.setBounds(89, 10, 90, 63);
+        add(label);
+
+        JLabel bankName = new JLabel("Asthaa Bank");
+        bankName.setFont(new Font("calibri", Font.BOLD, 12));
+        bankName.setBounds(105, 73, 100, 12);
+        add(bankName);
+
+        JLabel formno1 = new JLabel("FORM NO. " + formno);
+        formno1.setFont(new Font("Raleway", Font.BOLD, 12));
+        formno1.setBounds(580, 30, 600, 12);
+        add(formno1);
+
+        JLabel additionalDetails = new JLabel("Page 2: Additional Details");
+        additionalDetails.setFont(new Font("Raleway", Font.BOLD, 18));
+        additionalDetails.setBounds(260, 55, 400, 30);
+        add(additionalDetails);
+
+        JLabel religion = new JLabel("Religion* :");
+        religion.setFont(new Font("Raleway", Font.BOLD, 16));
+        religion.setBounds(247, 150, 100, 30);
+        add(religion);
+
+        String valReligion[] = {"Hindu", "Muslim", "Sikh", "Christian", "Other"};
+        religionBox = new JComboBox(valReligion);
+        religionBox.setBounds(400, 150, 220, 30);
+        religionBox.setBackground(Color.WHITE);
+        religionBox.setFont(new Font("Raleway", Font.PLAIN, 14));
+        religionBox.setEditable(true);
+        add(religionBox);
+
+        JLabel category = new JLabel("Category* :");
+        category.setFont(new Font("Raleway", Font.BOLD, 16));
+        category.setBounds(239, 200, 150, 30);
+        add(category);
+
+        String valCategory[] = {"General", "OBC", "SC", "ST", "Other"};
+        categoryBox = new JComboBox(valCategory);
+        categoryBox.setBounds(400, 200, 220, 30);
+        categoryBox.setBackground(Color.WHITE);
+        categoryBox.setFont(new Font("Raleway", Font.PLAIN, 14));
+        categoryBox.setEditable(true);
+        add(categoryBox);
+
+        JLabel income = new JLabel("Income* :");
+        income.setFont(new Font("Raleway", Font.BOLD, 16));
+        income.setBounds(254, 250, 170, 30);
+        add(income);
+
+        String valIncome[] = {"Null", "< 1,50,000", "<2,50,000", "<5,00,000", "Upto 10,00,000"};
+        incomeBox = new JComboBox(valIncome);
+        incomeBox.setBounds(400, 250, 220, 30);
+        incomeBox.setBackground(Color.WHITE);
+        incomeBox.setFont(new Font("Raleway", Font.PLAIN, 14));
+        incomeBox.setEditable(true);
+        add(incomeBox);
+
+        JLabel education = new JLabel("Educational ");
+        education.setFont(new Font("Raleway", Font.BOLD, 16));
+        education.setBounds(230, 300, 120, 30);
+        add(education);
+
+        JLabel qualification = new JLabel("Qualification* :");
+        qualification.setFont(new Font("Raleway", Font.BOLD, 16));
+        qualification.setBounds(213, 330, 120, 30);
+        add(qualification);
+
+        String valEducation[] = {"Non-Graduation", "10th Pass", "12th Pass", "Graduate", "Post-Graduation", "Doctorate", "Others"};
+        educationBox = new JComboBox(valEducation);
+        educationBox.setBounds(400, 330, 220, 30);
+        educationBox.setBackground(Color.WHITE);
+        educationBox.setFont(new Font("Raleway", Font.PLAIN, 14));
+        educationBox.setEditable(true);
+        add(educationBox);
+
+        JLabel occupation = new JLabel("Occupation* :");
+        occupation.setFont(new Font("Raleway", Font.BOLD, 16));
+        occupation.setBounds(221, 380, 120, 30);
+        add(occupation);
+
+        String valOccupation[] = {"Salaried", "Self-Employed", "Business", "Student", "Retired", "Others"};
+        occupationBox = new JComboBox(valOccupation);
+        occupationBox.setBounds(400, 380, 220, 30);
+        occupationBox.setBackground(Color.WHITE);
+        occupationBox.setFont(new Font("Raleway", Font.PLAIN, 14));
+        occupationBox.setEditable(true);
+        add(occupationBox);
+
+        JLabel pan = new JLabel("PAN Number* :");
+        pan.setFont(new Font("Raleway", Font.BOLD, 16));
+        pan.setBounds(211, 430, 120, 30);
+        add(pan);
+
+        panTextField = new JTextField();
+        panTextField.setFont(new Font("Raleway", Font.PLAIN, 16));
+        panTextField.setBounds(400, 430, 220, 30);
+        add(panTextField);
+
+        JLabel aadhar = new JLabel("Aadhar Number* :");
+        aadhar.setFont(new Font("Raleway", Font.BOLD, 16));
+        aadhar.setBounds(189, 480, 150, 30);
+        add(aadhar);
+
+        aadharTextField = new JTextField();
+        aadharTextField.setFont(new Font("Raleway", Font.PLAIN, 16));
+        aadharTextField.setBounds(400, 480, 220, 30);
+        add(aadharTextField);
+
+        JLabel senior = new JLabel("Senior Citizen* :");
+        senior.setFont(new Font("Raleway", Font.BOLD, 16));
+        senior.setBounds(201, 530, 200, 30);
+        add(senior);
+
+        yesSenior = new JRadioButton("Yes");
+        yesSenior.setBackground(Color.WHITE);
+        yesSenior.setBounds(400, 530, 100, 30);
+        add(yesSenior);
+
+        noSenior = new JRadioButton("No");
+        noSenior.setBackground(Color.WHITE);
+        noSenior.setBounds(500, 530, 100, 30);
+        add(noSenior);
+
+        seniorGroup = new ButtonGroup();
+        seniorGroup.add(yesSenior);
+        seniorGroup.add(noSenior);
+
+        JLabel accountExist = new JLabel("If Any Existing Account Available?* :");
+        accountExist.setFont(new Font("Raleway", Font.BOLD, 16));
+        accountExist.setBounds(50, 580, 400, 30);
+        add(accountExist);
+
+        yesAccount = new JRadioButton("Yes");
+        yesAccount.setBackground(Color.WHITE);
+        yesAccount.setBounds(400, 580, 100, 30);
+        add(yesAccount);
+
+        noAccount = new JRadioButton("No");
+        noAccount.setBackground(Color.WHITE);
+        noAccount.setBounds(500, 580, 100, 30);
+        add(noAccount);
+
+        accountGroup = new ButtonGroup();
+        accountGroup.add(yesAccount);
+        accountGroup.add(noAccount);
+
+        next = new JButton("NEXT");
+        next.setBackground(Color.BLACK);
+        next.setForeground(Color.WHITE);
+        next.setBounds(522, 700, 100, 30);
+        next.addActionListener(this);
+        add(next);
+
+        getContentPane().setBackground(Color.WHITE);
+        setSize(750, 800);
+        setVisible(true);
+        setResizable(false);
+        setLocation(400, 10);
+    }
+
+    public void actionPerformed(ActionEvent ae) {
+
+        String selectReligion = (String) religionBox.getSelectedItem();
+        String selectCategory = (String) categoryBox.getSelectedItem();
+        String selectIncome = (String) incomeBox.getSelectedItem();
+        String selectEducation = (String) educationBox.getSelectedItem();
+        String selectOccupation = (String) occupationBox.getSelectedItem();
+
+        String pan = panTextField.getText();
+        String aadhar = aadharTextField.getText();
+
+        String senior = "";
+        if (yesSenior.isSelected()) {
+            senior = "Yes";
+        } else if (noSenior.isSelected()) {
+            senior = "No";
+        }
+        String accountExist = "";
+        if (yesAccount.isSelected()) {
+            accountExist = "Yes";
+        } else if (noAccount.isSelected()) {
+            accountExist = "No";
+        }
+
+        try {
+
+            if (selectReligion.equals("") || selectCategory.equals("") || selectIncome.equals("") || selectEducation.equals("") || selectOccupation.equals("") || pan.equals("") || aadhar.equals("") || senior.equals("") || accountExist.equals("")) {
+               JOptionPane.showMessageDialog(null, "Each field is required to be filled", "Warning!", JOptionPane.WARNING_MESSAGE); 
+               
+            } else {
+
+                setVisible(false);
+                new SignupThree(formno).setVisible(true);
+
+                Conn c1 = new Conn();
+                String query = "insert into signuptwo values('" + formno + "' , '" + selectReligion + "' , '" + selectCategory + "' , '" + selectIncome + "' , '" + selectEducation + "' , '" + selectOccupation + "' , '" + pan + "' , '" + aadhar + "' , '" + senior + "' , '" + accountExist + "')";
+                c1.s1.executeUpdate(query);
+            }
+
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+
+    }
+
+    public static void main(String[] args) {
+        new SignupTwo("");
+
+    }
+
+}
