@@ -1,0 +1,377 @@
+package bank.management.system;
+
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.*;
+
+
+public class PinChange extends JFrame implements ActionListener{
+    
+    JButton cancel, enter, clear; // button1, button2 ,button3 , button4 , button5 ,button6, button7, button8, button9, button0, buttonHash, buttonStar;
+    JPasswordField pinChangeField, reEnterPinField, currentPinField;
+    String pinNumber;
+    
+    PinChange(String pinNumber){
+       this.pinNumber = pinNumber;
+       
+       setLayout(null);
+       
+       ImageIcon i1 = new ImageIcon(ClassLoader.getSystemResource("icon/atm.jpg"));
+       Image i2 = i1.getImage().getScaledInstance(900,870,Image.SCALE_DEFAULT);
+       ImageIcon i3 = new ImageIcon(i2);
+       JLabel image = new JLabel(i3);
+       image.setBounds(0, 0, 900, 870);
+       add(image);
+       
+       JLabel text = new JLabel ("Change Your PIN");
+       text.setForeground(Color.WHITE);
+       text.setFont(new Font("System" , Font.BOLD, 16));
+       text.setBounds(265, 350, 150, 25);
+       image.add(text);
+       
+       JLabel currentPinText = new JLabel ("Enter Current PIN:");
+       currentPinText.setForeground(Color.WHITE);
+       currentPinText.setFont(new Font("System" , Font.BOLD, 14));
+       currentPinText.setBounds(170, 410, 135, 25);
+       image.add(currentPinText);
+       
+       currentPinField = new JPasswordField();
+       currentPinField.setFont(new Font("Raleway" , Font.PLAIN, 14));
+       currentPinField.setBounds(310, 410, 180, 25);
+       image.add(currentPinField);
+       
+       JLabel pinText = new JLabel ("Enter New PIN:");
+       pinText.setForeground(Color.WHITE);
+       pinText.setFont(new Font("System" , Font.BOLD, 14));
+       pinText.setBounds(170, 450, 110, 25);
+       image.add(pinText);
+       
+       pinChangeField = new JPasswordField();
+       pinChangeField.setFont(new Font("Raleway" , Font.PLAIN, 14));
+       pinChangeField.setBounds(310, 450, 180, 25);
+       image.add(pinChangeField);
+       
+       JLabel enterPinAgain = new JLabel ("Re-Enter New PIN:");
+       enterPinAgain.setForeground(Color.WHITE);
+       enterPinAgain.setFont(new Font("System" , Font.BOLD, 14));
+       enterPinAgain.setBounds(170, 490, 135, 25);
+       image.add(enterPinAgain);
+       
+       reEnterPinField = new JPasswordField();
+       reEnterPinField = new JPasswordField();
+       reEnterPinField.setFont(new Font("Raleway" , Font.PLAIN, 14));
+       reEnterPinField.setBounds(310, 490, 180, 25);
+       image.add(reEnterPinField);
+       
+       /* button1 = new JButton("");
+        button1.setBounds(280, 773, 46, 18);
+        button1.setBackground(Color.LIGHT_GRAY);
+        button1.setOpaque(false);
+        button1.addActionListener(this);
+        image.add(button1);
+        
+        button2 = new JButton("");
+        button2.setBounds(336, 773, 48, 18);
+        button2.setBackground(Color.LIGHT_GRAY);
+        button2.setOpaque(false);
+        button2.addActionListener(this);
+        image.add(button2);
+        
+        button3 = new JButton("");
+        button3.setBounds(390, 773, 48, 18);
+        button3.setBackground(Color.LIGHT_GRAY);
+        button3.setOpaque(false);
+        button3.addActionListener(this);
+        image.add(button3);
+        
+        button4 = new JButton("");
+        button4.setBounds(273, 791, 51, 19);
+        button4.setBackground(Color.LIGHT_GRAY);
+        button4.setOpaque(false);
+        button4.addActionListener(this);
+        image.add(button4);
+        
+        button5 = new JButton("");
+        button5.setBounds(332, 791, 51, 19);
+        button5.setBackground(Color.LIGHT_GRAY);
+        button5.setOpaque(false);
+        button5.addActionListener(this);
+        image.add(button5);
+        
+        button6 = new JButton("");
+        button6.setBounds(389, 791, 51, 19);
+        button6.setBackground(Color.LIGHT_GRAY);
+        button6.setOpaque(false);
+        button6.addActionListener(this);
+        image.add(button6);
+        
+        button7 = new JButton("");
+        button7.setBounds(267, 812, 52, 20);
+        button7.setBackground(Color.LIGHT_GRAY);
+        button7.setOpaque(false);
+        button7.addActionListener(this);
+        image.add(button7);
+        
+        button8 = new JButton("");
+        button8.setBounds(329, 812, 52, 20);
+        button8.setBackground(Color.LIGHT_GRAY);
+        button8.setOpaque(false);
+        button8.addActionListener(this);
+        image.add(button8);
+        
+        button9 = new JButton("");
+        button9.setBounds(388, 812, 52, 20);
+        button9.setBackground(Color.LIGHT_GRAY);
+        button9.setOpaque(false);
+        button9.addActionListener(this);
+        image.add(button9);
+        
+        button0 = new JButton("");
+        button0.setBounds(326, 834, 53, 21);
+        button0.setBackground(Color.LIGHT_GRAY);
+        button0.setOpaque(false);
+        button0.addActionListener(this);
+        image.add(button0);
+        
+        buttonHash = new JButton("");
+        buttonHash.setBounds(388, 834, 53, 21);
+        buttonHash.setBackground(Color.LIGHT_GRAY);
+        buttonHash.setOpaque(false);
+        buttonHash.addActionListener(this);
+        image.add(buttonHash);
+        
+        buttonStar = new JButton("");
+        buttonStar.setBounds(263, 834, 53, 21);
+        buttonStar.setBackground(Color.LIGHT_GRAY);
+        buttonStar.setOpaque(false);
+        buttonStar.addActionListener(this);
+        image.add(buttonStar);*/
+        
+        cancel = new JButton("");
+        cancel.setBounds(460, 774, 90, 20);
+        cancel.setBackground(Color.RED);
+        cancel.setOpaque(false);
+        cancel.addActionListener(this);
+        image.add(cancel);
+        
+        clear = new JButton("");
+        clear.setBounds(462, 790, 90, 20);
+        clear.setBackground(Color.YELLOW);
+        clear.setOpaque(false);
+        clear.addActionListener(this);
+        image.add(clear);
+        
+        enter = new JButton("");
+        enter.setBounds(465, 812, 90, 20);
+        enter.setBackground(Color.GREEN);
+        enter.setOpaque(false);
+        enter.addActionListener(this);
+        image.add(enter);
+       
+       
+       setSize(900,900);
+       setLocation(300,0);
+       setUndecorated(true);
+       setVisible(true);
+    }
+    
+      public void actionPerformed(ActionEvent ae){
+        
+         /*  String currentPin=currentPinField.getText();
+           String changePin=pinChangeField.getText();
+           String rePin=reEnterPinField.getText();
+         
+       
+           if (ae.getSource() == button0){
+           currentPin=currentPinField.getText(); 
+           currentPinField.setText(currentPin+"0");
+        }else if (ae.getSource() == button1){  
+           currentPin=currentPinField.getText(); 
+           currentPinField.setText(currentPin+"1");
+        }else if (ae.getSource() == button2){
+           currentPinField.setText(currentPin+"2");
+        }else if (ae.getSource() == button3){                       
+           currentPinField.setText(currentPin+"3");
+        }else if (ae.getSource() == button4){                       
+           currentPinField.setText(currentPin+"4");
+        }else if (ae.getSource() == button5){                       
+           currentPinField.setText(currentPin+"5");
+        }else if (ae.getSource() == button6){                       
+           currentPinField.setText(currentPin+"6");
+        }else if (ae.getSource() == button7){                       
+           currentPinField.setText(currentPin+"7");
+        }else if (ae.getSource() == button8){            
+           currentPinField.setText(currentPin+"8");        
+         }else if (ae.getSource() == button9){                        
+           currentPinField.setText(currentPin+"9");
+        }else if (ae.getSource() == buttonStar){            
+           currentPinField.setText(currentPin+"*");
+        }else if (ae.getSource() == buttonHash){                      
+           currentPinField.setText(currentPin+"#");
+        } 
+       
+      
+       if (ae.getSource() == button0){
+           changePin=pinChangeField.getText();
+           pinChangeField.setText(changePin+"0");
+        }else if (ae.getSource() == button1){    
+          changePin=pinChangeField.getText();
+           pinChangeField.setText(changePin+"1");
+        }else if (ae.getSource() == button2){          
+           pinChangeField.setText(changePin+"2");
+        }else if (ae.getSource() == button3){          
+           pinChangeField.setText(changePin+"3");
+        }else if (ae.getSource() == button4){          
+           pinChangeField.setText(changePin+"4");
+        }else if (ae.getSource() == button5){          
+           pinChangeField.setText(changePin+"5");
+        }else if (ae.getSource() == button6){          
+           pinChangeField.setText(changePin+"6");
+        }else if (ae.getSource() == button7){          
+           pinChangeField.setText(changePin+"7");
+        }else if (ae.getSource() == button8){          
+           pinChangeField.setText(changePin+"8");
+        }else if (ae.getSource() == button9){          
+           pinChangeField.setText(changePin+"9");
+        }else if (ae.getSource() == buttonStar){          
+           pinChangeField.setText(changePin+"*");
+        }else if (ae.getSource() == buttonHash){          
+           pinChangeField.setText(changePin+"#");
+        }
+         
+      
+         if (ae.getSource() == button0 ){                  
+           reEnterPinField.setText(rePin+"0");
+        }else if (ae.getSource() == button1){                  
+           reEnterPinField.setText(rePin+"1");
+        }else if (ae.getSource() == button2){                  
+           reEnterPinField.setText(rePin+"2");
+        }else if (ae.getSource() == button3){                  
+           reEnterPinField.setText(rePin+"3");
+        }else if (ae.getSource() == button4){                  
+           reEnterPinField.setText(rePin+"4");
+        }else if (ae.getSource() == button5){                  
+           reEnterPinField.setText(rePin+"5");
+        }else if (ae.getSource() == button6){                  
+           reEnterPinField.setText(rePin+"6");
+        }else if (ae.getSource() == button7){                  
+           reEnterPinField.setText(rePin+"7");
+        }else if (ae.getSource() == button8){                  
+           reEnterPinField.setText(rePin+"8");
+        }else if (ae.getSource() == button9){                  
+           reEnterPinField.setText(rePin+"9");
+        }else if (ae.getSource() == buttonStar){                  
+           reEnterPinField.setText(rePin+"*");
+        }else if (ae.getSource() == buttonHash){                  
+           rePin = reEnterPinField.getText();
+           reEnterPinField.setText(rePin+"#");
+        }
+          
+        */ 
+          
+         if(ae.getSource() == enter){
+         
+             try{
+               String currentpin = currentPinField.getText();
+               String changepin = pinChangeField.getText();
+               String repin = reEnterPinField.getText();
+              
+             
+               
+               if((currentpin.equals("") && changepin.equals("") && repin.equals(""))||(currentpin.equals("") && changepin.equals(""))||(changepin.equals("") && repin.equals(""))||(currentpin.equals("") && repin.equals(""))){
+                 JOptionPane.showMessageDialog(null, "Each field is required to be filled", "Warning!", JOptionPane.WARNING_MESSAGE);
+                 return;
+               }
+               
+              if(!currentpin.equals(pinNumber) && !currentpin.isBlank()){
+                  
+                 JOptionPane.showMessageDialog(null, "PIN number you entered does not match with your current PIN number", "Error!", JOptionPane.ERROR_MESSAGE);
+                 return;
+              }
+              
+               if (currentpin.equals(changepin) && !currentpin.equals("") && !changepin.equals("")){
+                   if(repin.equals("")){
+                      JOptionPane.showMessageDialog(null, "Please re-enter new PIN");
+                      return;
+                   }
+                   else{
+                     JOptionPane.showMessageDialog(null, "Please try a new PIN");
+                     return;
+                   }
+               }
+               if (!currentpin.equals(changepin) && !currentpin.equals("") && !changepin.equals("")){
+                   if(repin.equals("")){
+                      JOptionPane.showMessageDialog(null, "Please re-enter new PIN");
+                      return;
+                   }
+               }
+               
+               if (!changepin.equals(repin) && !repin.equals("")){
+                   if(!changepin.equals("") && !currentpin.equals("") ){
+                 JOptionPane.showMessageDialog(null, "PIN you re-entered does not match with new PIN");
+                 return;
+                   }
+               }
+               
+               if (!changepin.equals(repin) && !repin.equals("") && !changepin.equals("")){
+                   if(currentpin.equals("")){
+                     JOptionPane.showMessageDialog(null, "Please enter your current PIN");
+                     return;
+                   }
+               }
+               
+               if(currentpin.isBlank()){
+                  JOptionPane.showMessageDialog(null, "Please enter your current PIN");
+                  return;                   
+               }
+               
+               if(changepin.isBlank()){
+                 JOptionPane.showMessageDialog(null, "Please enter new PIN");
+                 return;
+               }
+               
+               if(repin.isBlank()){
+                 JOptionPane.showMessageDialog(null, "Please re-enter new PIN");
+                 return;
+               
+              }
+               
+               
+               
+               Conn conn = new Conn();
+               String query1 = "update bank set pin_number = '"+repin+"' where pin_number = '"+pinNumber+"'";
+               String query2 = "update login set pin_number = '"+repin+"' where pin_number = '"+pinNumber+"'";
+               String query3 = "update signupthree set pin_number = '"+repin+"' where pin_number = '"+pinNumber+"'";
+               
+               conn.s1.executeUpdate(query1);
+               conn.s1.executeUpdate(query2);
+               conn.s1.executeUpdate(query3);
+               
+               JOptionPane.showMessageDialog(null, "Your PIN has been successfully updated");
+               
+               setVisible(false);
+               new Transaction(repin).setVisible(true);
+        
+             }catch(Exception e){
+        
+            
+            }
+             
+         } else if(ae.getSource() == cancel){
+            
+            setVisible(false);
+            new Transaction(pinNumber).setVisible(true);
+            
+        }else if (ae.getSource() == clear){            
+            currentPinField.setText("");
+            pinChangeField.setText("");
+            reEnterPinField.setText("");
+        }
+    }
+    
+    public static void main(String[] args){
+        
+        new PinChange("").setVisible(true);
+        
+    }
+}
