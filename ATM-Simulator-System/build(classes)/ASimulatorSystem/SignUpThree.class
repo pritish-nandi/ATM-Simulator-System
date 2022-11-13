@@ -1,0 +1,380 @@
+package bank.management.system;
+
+import java.awt.event.*;
+import java.awt.*;
+import javax.swing.*;
+import java.util.*;
+
+public class SignupThree extends JFrame implements ActionListener{
+    
+    JRadioButton savingAccount, fixedAccount, currentAccount, recurringAccount;
+    ButtonGroup accountGroup;
+    JCheckBox atmCheckbox, internetBankingCheckbox, mobileBankingCheckbox, messageAlertCheckBox, chequeCheckbox, eStatementCheckbox, declarationCheckbox; 
+    JButton cancel , submit;
+    String formno;
+    
+    
+    SignupThree(String formno){
+        
+        this.formno = formno;
+        setLayout(null);
+        
+        setTitle("NEW ACCOUNT APPLICATION FORM - PAGE 3");
+        
+        
+        ImageIcon i10= new ImageIcon(ClassLoader.getSystemResource("icon/logo.jpg"));
+       Image i11 = i10.getImage().getScaledInstance(90, 63, Image.SCALE_DEFAULT);
+       ImageIcon i12 = new ImageIcon(i11);
+       JLabel label = new JLabel(i12);
+       label.setBounds(85, 10, 90, 63);
+       add(label);
+       
+       JLabel bankName = new JLabel("Asthaa Bank");
+       bankName.setFont(new Font("calibri", Font.BOLD, 12));
+       bankName.setBounds(101, 73, 100, 12);
+       add(bankName);
+       
+        JLabel accountDetails = new JLabel("Page 3: Account Details");
+        accountDetails.setFont(new Font("Raleway", Font.BOLD, 16));
+        accountDetails.setBounds(285, 45, 400, 30);
+        add(accountDetails);
+        
+        JLabel formno1 = new JLabel("FORM NO. " + formno );
+        formno1.setFont(new Font("Raleway" , Font.BOLD , 12));
+        formno1.setBounds(580,30,600,12);
+        add(formno1);
+        
+        JLabel accountType = new JLabel("Account Type:");
+        accountType.setFont(new Font("Raleway", Font.BOLD, 18));
+        accountType.setBounds(100, 140, 400, 30);
+        add(accountType);
+        
+        savingAccount = new JRadioButton("Saving Account");
+        savingAccount.setFont(new Font("Raleway", Font.BOLD, 10));
+        savingAccount.setBackground(Color.WHITE);
+        savingAccount.setBounds(100, 170 , 150, 30);
+        add(savingAccount);
+        
+        fixedAccount = new JRadioButton("Fixed Deposit Account");
+        fixedAccount.setFont(new Font("Raleway", Font.BOLD, 10));
+        fixedAccount.setBackground(Color.WHITE);
+        fixedAccount.setBounds(290, 170 , 200, 30);
+        add(fixedAccount);
+        
+        currentAccount = new JRadioButton("Current Account");
+        currentAccount.setFont(new Font("Raleway", Font.BOLD, 10));
+        currentAccount.setBackground(Color.WHITE);
+        currentAccount.setBounds(100, 195 , 160, 30);
+        add(currentAccount);
+        
+        recurringAccount = new JRadioButton("Recurring Deposit Account");
+        recurringAccount.setFont(new Font("Raleway", Font.BOLD, 10));
+        recurringAccount.setBackground(Color.WHITE);
+        recurringAccount.setBounds(290, 195 , 250, 30);
+        add(recurringAccount);
+        
+        accountGroup = new ButtonGroup();
+        accountGroup.add(savingAccount);
+        accountGroup.add(fixedAccount);
+        accountGroup.add(currentAccount);
+        accountGroup.add(recurringAccount);
+        
+        JLabel cardNumber = new JLabel("Card Number: ");
+        cardNumber.setFont(new Font("Raleway", Font.BOLD, 16));
+        cardNumber.setBounds(100, 253, 190, 30);
+        add(cardNumber);
+        
+        JLabel dummyNumber = new JLabel("XXXX-XXXX-XXXX-4184");
+        dummyNumber.setFont(new Font("Raleway", Font.BOLD, 16));
+        dummyNumber.setBounds(270, 253, 400, 30);
+        add(dummyNumber);
+        
+        JLabel message1 = new JLabel("Your 16 Digit Card Number");
+        message1.setFont(new Font("Raleway", Font.BOLD, 10));
+        message1.setBounds(100, 280, 400, 15);
+        add(message1);
+        
+        JLabel pinNumber = new JLabel("PIN Number: ");
+        pinNumber.setFont(new Font("Raleway", Font.BOLD, 16));
+        pinNumber.setBounds(100, 312, 150, 30);
+        add(pinNumber);
+        
+        JLabel message2 = new JLabel("Your 4 Digit PIN Number");
+        message2.setFont(new Font("Raleway", Font.BOLD, 10));
+        message2.setBounds(100, 339, 400, 15);
+        add(message2);
+        
+        JLabel dummyPinNumber = new JLabel("XXXX");
+        dummyPinNumber.setFont(new Font("Raleway", Font.BOLD, 16));
+        dummyPinNumber.setBounds(270, 312, 50, 30);
+        add(dummyPinNumber);
+        
+        JLabel survices = new JLabel("Survices Required: ");
+        survices.setFont(new Font("Raleway", Font.BOLD, 16));
+        survices.setBounds(100, 385, 150, 30);
+        add(survices);
+        
+        atmCheckbox = new JCheckBox("ATM CARD");
+        atmCheckbox.setFont(new Font("Raleway", Font.BOLD, 12));
+        atmCheckbox.setBackground(Color.WHITE);
+        atmCheckbox.setBounds(100, 420 , 150, 30);
+        add(atmCheckbox);
+        
+        
+        internetBankingCheckbox = new JCheckBox("Internet Banking");
+        internetBankingCheckbox.setFont(new Font("Raleway", Font.BOLD, 12));
+        internetBankingCheckbox.setBackground(Color.WHITE);
+        internetBankingCheckbox.setBounds(270, 420 , 150, 30);
+        add(internetBankingCheckbox);
+        
+        mobileBankingCheckbox = new JCheckBox("Mobile Banking");
+        mobileBankingCheckbox.setFont(new Font("Raleway", Font.BOLD, 12));
+        mobileBankingCheckbox.setBackground(Color.WHITE);
+        mobileBankingCheckbox.setBounds(100, 450 , 150, 30);
+        add(mobileBankingCheckbox);
+        
+        messageAlertCheckBox = new JCheckBox("Email & SMS Alerts");
+        messageAlertCheckBox.setFont(new Font("Raleway", Font.BOLD, 12));
+        messageAlertCheckBox.setBackground(Color.WHITE);
+        messageAlertCheckBox.setBounds(270, 450 , 150, 30);
+        add(messageAlertCheckBox);
+        
+        chequeCheckbox = new JCheckBox("Cheque Book");
+        chequeCheckbox.setFont(new Font("Raleway", Font.BOLD, 12));
+        chequeCheckbox.setBackground(Color.WHITE);
+        chequeCheckbox.setBounds(100, 480 , 150, 30);
+        add(chequeCheckbox);
+        
+        eStatementCheckbox = new JCheckBox("E-Statement");
+        eStatementCheckbox.setFont(new Font("Raleway", Font.BOLD, 12));
+        eStatementCheckbox.setBackground(Color.WHITE);
+        eStatementCheckbox.setBounds(270, 480 , 150, 30);
+        add(eStatementCheckbox);
+        
+        declarationCheckbox = new JCheckBox("I hereby declare that the above enterd details are correct to the best of my knowledge.");
+        declarationCheckbox.setFont(new Font("Raleway", Font.BOLD, 12));
+        declarationCheckbox.setBackground(Color.WHITE);
+        declarationCheckbox.setBounds(70, 560 , 600, 30);
+        add(declarationCheckbox);
+        
+        submit = new JButton("SUBMIT");
+        submit.setBackground(Color.BLACK);
+        submit.setForeground(Color.WHITE);
+        submit.setBounds(500, 640, 100, 30);
+        submit.addActionListener(this);
+        add(submit);
+        
+        cancel = new JButton("CANCEL");
+        cancel.setBackground(Color.BLACK);
+        cancel.setForeground(Color.WHITE);
+        cancel.setBounds(300, 640, 100, 30);
+        cancel.addActionListener(this);
+        add(cancel);
+        
+        getContentPane().setBackground(Color.WHITE);
+        setSize(750,800);
+        setVisible(true);
+        setResizable(false);
+        setLocation(400,10);
+        
+        
+        
+        
+    }
+    
+    public void actionPerformed(ActionEvent ae){
+    
+             if (ae.getSource()== submit){
+                 
+                 String accountType = "";
+                 if(savingAccount.isSelected()){
+                   accountType = "Saving Account";
+                 }else if(fixedAccount.isSelected()){
+                   accountType = "Fixed Deposit Account";
+                 }else if(currentAccount.isSelected()){
+                   accountType = "Current Account";
+                 }else if(recurringAccount.isSelected()){
+                   accountType = "Recurring Deposit Account";
+                 }
+                 
+                 Random random = new Random();
+                 String cardNumber = "" + ((Math.abs(random.nextLong()) % 90000000L)+ 5040936000000000L);
+                 
+                 String pinNumber = "" + ((Math.abs(random.nextLong()) % 9000L) + 1000L);
+                 
+                 String facility = "";
+                 
+                 if(atmCheckbox.isSelected() && internetBankingCheckbox.isSelected() && mobileBankingCheckbox.isSelected() && messageAlertCheckBox.isSelected() && chequeCheckbox.isSelected() && eStatementCheckbox.isSelected()){
+                     facility = facility + "ATM Card, Internet Banking, Mobile Banking, Email & SMS Alerts, Cheque Book, E-Statement";
+                 }
+                 
+                 if(atmCheckbox.isSelected() && internetBankingCheckbox.isSelected() && mobileBankingCheckbox.isSelected() && messageAlertCheckBox.isSelected() && chequeCheckbox.isSelected() && !eStatementCheckbox.isSelected()){
+                     facility = facility + "ATM Card, Internet Banking, Mobile Banking, Email & SMS Alerts, Cheque Book";
+                 }else if(atmCheckbox.isSelected() && internetBankingCheckbox.isSelected() && mobileBankingCheckbox.isSelected() && messageAlertCheckBox.isSelected() && eStatementCheckbox.isSelected() && !chequeCheckbox.isSelected()){
+                     facility = facility + "ATM Card, Internet Banking, Mobile Banking, Email & SMS Alerts, E-Statement";
+                 }else if(atmCheckbox.isSelected() && internetBankingCheckbox.isSelected() && mobileBankingCheckbox.isSelected() && chequeCheckbox.isSelected() && eStatementCheckbox.isSelected() && !messageAlertCheckBox.isSelected()){
+                     facility = facility + "ATM Card, Internet Banking, Mobile Banking, Cheque Book, E-Statement";
+                 }else if(internetBankingCheckbox.isSelected() && mobileBankingCheckbox.isSelected() && messageAlertCheckBox.isSelected() && chequeCheckbox.isSelected() && eStatementCheckbox.isSelected() && !atmCheckbox.isSelected()){
+                     facility = facility + "Internet Banking, Mobile Banking, Email & SMS Alerts, Cheque Book, E-Statement";
+                 }
+                 
+                 
+                 if(atmCheckbox.isSelected()&& internetBankingCheckbox.isSelected() && mobileBankingCheckbox.isSelected() && messageAlertCheckBox.isSelected() && !chequeCheckbox.isSelected() && !eStatementCheckbox.isSelected()){
+                     facility = facility + "ATM Card, Internet Banking, Mobile Banking, Email & SMS Alerts";
+                 }else if(atmCheckbox.isSelected()&& internetBankingCheckbox.isSelected() && mobileBankingCheckbox.isSelected() && chequeCheckbox.isSelected() && !messageAlertCheckBox.isSelected() && !eStatementCheckbox.isSelected()){
+                     facility = facility + "ATM Card, Internet Banking, Mobile Banking, Cheque Book";
+                 }else if(atmCheckbox.isSelected()&& internetBankingCheckbox.isSelected() && mobileBankingCheckbox.isSelected() && eStatementCheckbox.isSelected() && !messageAlertCheckBox.isSelected() && !chequeCheckbox.isSelected()){
+                     facility = facility + "ATM Card, Internet Banking, Mobile Banking, E-Statement";
+                 }else if(atmCheckbox.isSelected()&& internetBankingCheckbox.isSelected() && messageAlertCheckBox.isSelected() && chequeCheckbox.isSelected() && !mobileBankingCheckbox.isSelected() && !eStatementCheckbox.isSelected()){
+                     facility = facility + "ATM Card, Internet Banking, Email & SMS Alerts, Cheque Book";
+                 }else if(atmCheckbox.isSelected()&& internetBankingCheckbox.isSelected() && messageAlertCheckBox.isSelected() && eStatementCheckbox.isSelected() && !mobileBankingCheckbox.isSelected() && !chequeCheckbox.isSelected()){
+                     facility = facility + "ATM Card, Internet Banking, Email & SMS Alerts, E-Statement";
+                 }else if(atmCheckbox.isSelected()&& internetBankingCheckbox.isSelected() && chequeCheckbox.isSelected() && eStatementCheckbox.isSelected() && !mobileBankingCheckbox.isSelected() && !messageAlertCheckBox.isSelected()){
+                     facility = facility + "ATM Card, Internet Banking, Cheque Book, E-Statement";
+                 }else if( internetBankingCheckbox.isSelected() && mobileBankingCheckbox.isSelected() && messageAlertCheckBox.isSelected() && chequeCheckbox.isSelected() && !atmCheckbox.isSelected() && !eStatementCheckbox.isSelected()){
+                     facility = facility + "Internet Banking, Mobile Banking, Email & SMS Alerts, Cheque Book";
+                 }else if(internetBankingCheckbox.isSelected() && mobileBankingCheckbox.isSelected() && messageAlertCheckBox.isSelected() && eStatementCheckbox.isSelected() && !atmCheckbox.isSelected() && !chequeCheckbox.isSelected()){
+                     facility = facility + "Internet Banking, Mobile Banking, Email & SMS Alerts, E-Statement";
+                 }else if(internetBankingCheckbox.isSelected() && mobileBankingCheckbox.isSelected() && chequeCheckbox.isSelected() && eStatementCheckbox.isSelected() && !atmCheckbox.isSelected() && !messageAlertCheckBox.isSelected()){
+                     facility = facility + "Internet Banking, Mobile Banking, Cheque Book, E-Statement";
+                 }else if(mobileBankingCheckbox.isSelected() && messageAlertCheckBox.isSelected() && chequeCheckbox.isSelected() && eStatementCheckbox.isSelected() && !atmCheckbox.isSelected() && !messageAlertCheckBox.isSelected()){
+                     facility = facility + "Mobile Banking, Email & SMS Alerts, Cheque Book, E-Statement";
+                 }
+                 
+                 if(atmCheckbox.isSelected()&& internetBankingCheckbox.isSelected() && mobileBankingCheckbox.isSelected() && !messageAlertCheckBox.isSelected() && !chequeCheckbox.isSelected() && !eStatementCheckbox.isSelected()){
+                     facility = facility + "ATM Card, Internet Banking, Mobile Banking";
+                 }else if(atmCheckbox.isSelected()&& internetBankingCheckbox.isSelected() && messageAlertCheckBox.isSelected() && !mobileBankingCheckbox.isSelected() && !chequeCheckbox.isSelected() && !eStatementCheckbox.isSelected()){
+                     facility = facility + "ATM Card, Internet Banking, Email & SMS Alerts";
+                 }else if(atmCheckbox.isSelected()&& internetBankingCheckbox.isSelected() && chequeCheckbox.isSelected() && !mobileBankingCheckbox.isSelected() && !messageAlertCheckBox.isSelected() && !eStatementCheckbox.isSelected()){
+                     facility = facility + "ATM Card, Internet Banking, Cheque Book";
+                 }else if(atmCheckbox.isSelected()&& internetBankingCheckbox.isSelected() && eStatementCheckbox.isSelected() && !mobileBankingCheckbox.isSelected() && !messageAlertCheckBox.isSelected() && !chequeCheckbox.isSelected()){
+                     facility = facility + "ATM Card, Internet Banking, E-Statement";
+                 }else if(atmCheckbox.isSelected()&& mobileBankingCheckbox.isSelected() && messageAlertCheckBox.isSelected() && !internetBankingCheckbox.isSelected() && !chequeCheckbox.isSelected() && !eStatementCheckbox.isSelected()){
+                     facility = facility + "ATM Card, Mobile Banking, Email & SMS Alerts";
+                 }else if(atmCheckbox.isSelected()&& mobileBankingCheckbox.isSelected() && chequeCheckbox.isSelected() && !internetBankingCheckbox.isSelected() && !messageAlertCheckBox.isSelected() && !eStatementCheckbox.isSelected()){
+                     facility = facility + "ATM Card, Mobile Banking, Cheque Book";
+                 }else if(atmCheckbox.isSelected()&& mobileBankingCheckbox.isSelected() && eStatementCheckbox.isSelected() && !internetBankingCheckbox.isSelected() && !messageAlertCheckBox.isSelected() && !chequeCheckbox.isSelected()){
+                     facility = facility + "ATM Card, Mobile Banking, E-Statement";
+                 }else if(atmCheckbox.isSelected()&& messageAlertCheckBox.isSelected() && chequeCheckbox.isSelected() && !internetBankingCheckbox.isSelected() && !mobileBankingCheckbox.isSelected() && !eStatementCheckbox.isSelected()){
+                     facility = facility + "ATM Card, Email & SMS Alerts, Cheque Book";
+                 }else if(atmCheckbox.isSelected()&& messageAlertCheckBox.isSelected() && eStatementCheckbox.isSelected() && !internetBankingCheckbox.isSelected() && !mobileBankingCheckbox.isSelected() && !chequeCheckbox.isSelected()){
+                     facility = facility + "ATM Card, Email & SMS Alerts, E-Statement";
+                 }else if(atmCheckbox.isSelected()&& chequeCheckbox.isSelected() && eStatementCheckbox.isSelected() && !internetBankingCheckbox.isSelected() && !mobileBankingCheckbox.isSelected() && !messageAlertCheckBox.isSelected()){
+                     facility = facility + "ATM Card, Cheque Book, E-Statement";
+                 }else if( internetBankingCheckbox.isSelected() && mobileBankingCheckbox.isSelected() && messageAlertCheckBox.isSelected() && !atmCheckbox.isSelected() && !chequeCheckbox.isSelected() && !eStatementCheckbox.isSelected()){
+                     facility = facility + "Internet Banking, Mobile Banking, Email & SMS Alerts";
+                 }else if(internetBankingCheckbox.isSelected() && mobileBankingCheckbox.isSelected() && chequeCheckbox.isSelected() && !atmCheckbox.isSelected() && !messageAlertCheckBox.isSelected() && !eStatementCheckbox.isSelected()){
+                     facility = facility + "Internet Banking, Mobile Banking, Cheque Book";
+                 }else if(internetBankingCheckbox.isSelected() && mobileBankingCheckbox.isSelected() && eStatementCheckbox.isSelected() && !atmCheckbox.isSelected() && !messageAlertCheckBox.isSelected() && !chequeCheckbox.isSelected()){
+                     facility = facility + "Internet Banking, Mobile Banking, E-Statement";
+                 }else if( internetBankingCheckbox.isSelected() && messageAlertCheckBox.isSelected() && chequeCheckbox.isSelected() && !atmCheckbox.isSelected() && !mobileBankingCheckbox.isSelected() && !eStatementCheckbox.isSelected()){
+                     facility = facility + "Internet Banking, Email & SMS Alerts, Cheque Book";
+                 }else if(internetBankingCheckbox.isSelected() && messageAlertCheckBox.isSelected() && eStatementCheckbox.isSelected() && !atmCheckbox.isSelected() && !mobileBankingCheckbox.isSelected() && !chequeCheckbox.isSelected()){
+                     facility = facility + "Internet Banking, Email & SMS Alerts, E-Statement";
+                 }else if(internetBankingCheckbox.isSelected() && chequeCheckbox.isSelected() && eStatementCheckbox.isSelected() && !atmCheckbox.isSelected() && !mobileBankingCheckbox.isSelected() && !messageAlertCheckBox.isSelected()){
+                     facility = facility + "Internet Banking, Cheque Book, E-Statement";
+                 }else if(mobileBankingCheckbox.isSelected() && messageAlertCheckBox.isSelected() && chequeCheckbox.isSelected() && !atmCheckbox.isSelected() && !internetBankingCheckbox.isSelected() && !eStatementCheckbox.isSelected()){
+                     facility = facility + "Mobile Banking, Email & SMS Alerts, Cheque Book";
+                 }else if(mobileBankingCheckbox.isSelected() && messageAlertCheckBox.isSelected() && eStatementCheckbox.isSelected() && !atmCheckbox.isSelected() && !internetBankingCheckbox.isSelected() && !chequeCheckbox.isSelected()){
+                     facility = facility + "Mobile Banking, Email & SMS Alerts, E-Statement";
+                 }else if(mobileBankingCheckbox.isSelected() && chequeCheckbox.isSelected() && eStatementCheckbox.isSelected() && !atmCheckbox.isSelected() && !internetBankingCheckbox.isSelected() && !messageAlertCheckBox.isSelected()){
+                     facility = facility + "Mobile Banking, Cheque Book, E-Statement";
+                 }else if(messageAlertCheckBox.isSelected() && chequeCheckbox.isSelected() && eStatementCheckbox.isSelected() && !atmCheckbox.isSelected() && !internetBankingCheckbox.isSelected() && !mobileBankingCheckbox.isSelected()){
+                     facility = facility + "Email & SMS Alerts, Cheque Book, E-Statement";
+                 }
+                 
+                 if(atmCheckbox.isSelected() && internetBankingCheckbox.isSelected() && !mobileBankingCheckbox.isSelected() && !messageAlertCheckBox.isSelected() && !chequeCheckbox.isSelected() && !eStatementCheckbox.isSelected()){
+                     facility = facility + "ATM Card, Internet Banking";
+                 }else if(atmCheckbox.isSelected()&& mobileBankingCheckbox.isSelected() && !internetBankingCheckbox.isSelected() && !messageAlertCheckBox.isSelected() && !chequeCheckbox.isSelected() && !eStatementCheckbox.isSelected()){
+                     facility = facility + "ATM Card, Mobile Banking";
+                 }else if(atmCheckbox.isSelected()&& messageAlertCheckBox.isSelected() && !internetBankingCheckbox.isSelected() && !mobileBankingCheckbox.isSelected() && !chequeCheckbox.isSelected() && !eStatementCheckbox.isSelected()){
+                     facility = facility + "ATM Card, Email & SMS Alerts";
+                 }else if(atmCheckbox.isSelected()&& chequeCheckbox.isSelected() && !internetBankingCheckbox.isSelected() && !mobileBankingCheckbox.isSelected() && !messageAlertCheckBox.isSelected() && ! eStatementCheckbox.isSelected()){
+                     facility = facility + "ATM Card, Cheque Book";
+                 }else if(atmCheckbox.isSelected()&& eStatementCheckbox.isSelected() && !internetBankingCheckbox.isSelected() && !mobileBankingCheckbox.isSelected() && !messageAlertCheckBox.isSelected() && !chequeCheckbox.isSelected() ){
+                     facility = facility + "ATM Card, E-Statement";
+                 }else if(internetBankingCheckbox.isSelected()&& mobileBankingCheckbox.isSelected() && !atmCheckbox.isSelected() && !messageAlertCheckBox.isSelected() && !chequeCheckbox.isSelected() && !eStatementCheckbox.isSelected()){
+                     facility = facility + "Internet Banking, Mobile Banking";
+                 }else if(internetBankingCheckbox.isSelected()&& messageAlertCheckBox.isSelected() && !atmCheckbox.isSelected() && !mobileBankingCheckbox.isSelected() && !chequeCheckbox.isSelected() && !eStatementCheckbox.isSelected()){
+                     facility = facility + "Internet Banking, Email & SMS Alerts";
+                 }else if(internetBankingCheckbox.isSelected()&& chequeCheckbox.isSelected() && !atmCheckbox.isSelected() && !mobileBankingCheckbox.isSelected() && !messageAlertCheckBox.isSelected() && !eStatementCheckbox.isSelected()){
+                     facility = facility + "Internet Banking, Cheque Book";
+                 }else if(internetBankingCheckbox.isSelected()&& eStatementCheckbox.isSelected() && !atmCheckbox.isSelected() && !mobileBankingCheckbox.isSelected() && !messageAlertCheckBox.isSelected() && !chequeCheckbox.isSelected()){
+                     facility = facility + "Internet Banking, E-Statement";
+                 }else if(mobileBankingCheckbox.isSelected()&& messageAlertCheckBox.isSelected() && !atmCheckbox.isSelected() && !internetBankingCheckbox.isSelected() && !chequeCheckbox.isSelected() && !eStatementCheckbox.isSelected()){
+                     facility = facility + "Mobile Banking, Email & SMS Alerts";
+                 }else if(mobileBankingCheckbox.isSelected()&& chequeCheckbox.isSelected() && !atmCheckbox.isSelected() && !internetBankingCheckbox.isSelected() && !messageAlertCheckBox.isSelected() && !eStatementCheckbox.isSelected()){
+                     facility = facility + "Mobile Banking, Cheque Book";
+                 }else if(mobileBankingCheckbox.isSelected()&& eStatementCheckbox.isSelected() && !atmCheckbox.isSelected() && !internetBankingCheckbox.isSelected() && !messageAlertCheckBox.isSelected() && !chequeCheckbox.isSelected()){
+                     facility = facility + "Mobile Banking, E-Statement";
+                 }else if(messageAlertCheckBox.isSelected()&& chequeCheckbox.isSelected() && !atmCheckbox.isSelected() && !internetBankingCheckbox.isSelected() && !mobileBankingCheckbox.isSelected() && !eStatementCheckbox.isSelected()){
+                     facility = facility + "Email & SMS Alerts, Cheque Book";
+                 }else if(messageAlertCheckBox.isSelected()&& eStatementCheckbox.isSelected() && !atmCheckbox.isSelected() && !internetBankingCheckbox.isSelected() && !mobileBankingCheckbox.isSelected() && !chequeCheckbox.isSelected()){
+                     facility = facility + "Email & SMS Alerts, E-Statement";
+                 }else if(chequeCheckbox.isSelected()&& eStatementCheckbox.isSelected() && !atmCheckbox.isSelected() && !internetBankingCheckbox.isSelected() && !mobileBankingCheckbox.isSelected() && !messageAlertCheckBox.isSelected()){
+                     facility = facility + "Cheque Book, E-Statement";
+                 }
+                 
+                 if(atmCheckbox.isSelected() && !internetBankingCheckbox.isSelected() && !mobileBankingCheckbox.isSelected() && !messageAlertCheckBox.isSelected() && !chequeCheckbox.isSelected() && !eStatementCheckbox.isSelected()){
+                     facility = facility + "ATM Card";
+                 }else if(internetBankingCheckbox.isSelected() && !atmCheckbox.isSelected() && !mobileBankingCheckbox.isSelected() && !messageAlertCheckBox.isSelected() && !chequeCheckbox.isSelected() && !eStatementCheckbox.isSelected()){
+                     facility = facility + "Internet Banking";
+                 }else if(mobileBankingCheckbox.isSelected() && !atmCheckbox.isSelected() && !internetBankingCheckbox.isSelected() && !messageAlertCheckBox.isSelected() && !chequeCheckbox.isSelected() && !eStatementCheckbox.isSelected()){
+                     facility = facility + "Mobile Banking";
+                 }else if(messageAlertCheckBox.isSelected() && !atmCheckbox.isSelected() && !internetBankingCheckbox.isSelected() && !mobileBankingCheckbox.isSelected() && !chequeCheckbox.isSelected() && !eStatementCheckbox.isSelected()){
+                     facility = facility + "Email & SMS Alerts";
+                 }else if(chequeCheckbox.isSelected() && !atmCheckbox.isSelected() && !internetBankingCheckbox.isSelected() && !mobileBankingCheckbox.isSelected() && !messageAlertCheckBox.isSelected() && !eStatementCheckbox.isSelected()){
+                     facility = facility + "Cheque Book";
+                 }else if(eStatementCheckbox.isSelected() && !atmCheckbox.isSelected() && !internetBankingCheckbox.isSelected() && !mobileBankingCheckbox.isSelected() && !messageAlertCheckBox.isSelected() && !chequeCheckbox.isSelected()){
+                     facility = facility + "E-Statement";
+                 }
+                 
+                 
+                 
+                 try{
+                     
+                     if ((accountType.equals("") || facility.equals("")) && !declarationCheckbox.isSelected()){
+                        JOptionPane.showMessageDialog(null, "Each field is required to be filled", "Warning!", JOptionPane.WARNING_MESSAGE);
+                        return;
+                     }else if (accountType.equals("")){
+                        JOptionPane.showMessageDialog(null, "Please select which type of Account you want", "Warning!", JOptionPane.WARNING_MESSAGE);
+                        return;
+                     }else if (facility.equals("")){
+                        JOptionPane.showMessageDialog(null, "Please select what kind of facilities you want", "Warning!", JOptionPane.WARNING_MESSAGE);
+                        return;
+                     }else if (!declarationCheckbox.isSelected()){
+                        JOptionPane.showMessageDialog(null, "Please check the Declaration box and proceed for submission", "Warning!", JOptionPane.WARNING_MESSAGE);
+                        return;
+                     }else {
+                         Conn conn = new Conn();
+                         String query = "insert into signupthree values('"+formno+"', '"+accountType+"','"+cardNumber+"', '"+pinNumber+"', '"+facility+"')";
+                         String query2 = "insert into login values('"+formno+"', '"+cardNumber+"', '"+pinNumber+"')";
+                         
+                         conn.s1.executeUpdate(query);
+                         conn.s1.executeUpdate(query2);
+                         
+                         JOptionPane.showMessageDialog(null, "Your Card Number: " + cardNumber +  "\n Pin Number: " + pinNumber);
+                     }
+                     
+                       setVisible(false);
+                       new Deposit(pinNumber).setVisible(true);
+                       
+                 }catch( Exception e ){
+                     
+                    System.out.println(e);    
+                 }
+                 
+                
+             }else if(ae.getSource()== cancel){
+                  setVisible (false);
+                  new Login().setVisible(true);
+             }
+        
+    }
+    
+    
+    public static void main(String[] args){
+    
+        new SignupThree("");
+    }
+}
