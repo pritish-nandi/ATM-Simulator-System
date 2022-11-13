@@ -1,0 +1,209 @@
+package bank.management.system;
+
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.*;
+import java.util.*;
+import java.sql.*;
+import java.util.Date;
+
+public class Withdrawal extends JFrame implements ActionListener {
+    
+     JButton clear, enter, cancel; // button1, button2 ,button3 , button4 , button5 ,button6, button7, button8, button9, button0, buttonHash,buttonStar;
+    JTextField amountTextField;
+    String pinNumber;
+    
+    Withdrawal(String pinNumber){
+    
+        this.pinNumber = pinNumber;
+        
+        setLayout(null);
+        
+        ImageIcon i1 = new ImageIcon(ClassLoader.getSystemResource("icon/atm.jpg"));
+        Image i2 = i1.getImage().getScaledInstance(900, 870, Image.SCALE_DEFAULT);
+        ImageIcon i3 = new ImageIcon(i2);
+        JLabel image = new JLabel(i3);
+        image.setBounds(0,0,900,870);
+        add(image);
+        
+        JLabel text = new JLabel("Enter the amount you want to withdraw");
+        text.setForeground(Color.WHITE);
+        text.setFont(new Font("System", Font.BOLD, 16));
+        text.setBounds(192, 335, 300, 20);
+        image.add(text);
+        
+        amountTextField = new JTextField();
+        amountTextField.setFont(new Font("Raleway", Font.PLAIN, 16));
+        amountTextField.setBounds(195,375, 285, 30);
+        image.add(amountTextField);
+        
+       /* button1 = new JButton("");
+        button1.setBounds(280, 773, 46, 18);
+        button1.setBackground(Color.LIGHT_GRAY);
+        button1.setOpaque(false);
+        button1.addActionListener(this);
+        image.add(button1);
+        
+        button2 = new JButton("");
+        button2.setBounds(336, 773, 48, 18);
+        button2.setBackground(Color.LIGHT_GRAY);
+        button2.setOpaque(false);
+        button2.addActionListener(this);
+        image.add(button2);
+        
+        button3 = new JButton("");
+        button3.setBounds(390, 773, 48, 18);
+        button3.setBackground(Color.LIGHT_GRAY);
+        button3.setOpaque(false);
+        button3.addActionListener(this);
+        image.add(button3);
+        
+        button4 = new JButton("");
+        button4.setBounds(273, 791, 51, 19);
+        button4.setBackground(Color.LIGHT_GRAY);
+        button4.setOpaque(false);
+        button4.addActionListener(this);
+        image.add(button4);
+        
+        button5 = new JButton("");
+        button5.setBounds(332, 791, 51, 19);
+        button5.setBackground(Color.LIGHT_GRAY);
+        button5.setOpaque(false);
+        button5.addActionListener(this);
+        image.add(button5);
+        
+        button6 = new JButton("");
+        button6.setBounds(389, 791, 51, 19);
+        button6.setBackground(Color.LIGHT_GRAY);
+        button6.setOpaque(false);
+        button6.addActionListener(this);
+        image.add(button6);
+        
+        button7 = new JButton("");
+        button7.setBounds(267, 812, 52, 20);
+        button7.setBackground(Color.LIGHT_GRAY);
+        button7.setOpaque(false);
+        button7.addActionListener(this);
+        image.add(button7);
+        
+        button8 = new JButton("");
+        button8.setBounds(329, 812, 52, 20);
+        button8.setBackground(Color.LIGHT_GRAY);
+        button8.setOpaque(false);
+        button8.addActionListener(this);
+        image.add(button8);
+        
+        button9 = new JButton("");
+        button9.setBounds(388, 812, 52, 20);
+        button9.setBackground(Color.LIGHT_GRAY);
+        button9.setOpaque(false);
+        button9.addActionListener(this);
+        image.add(button9);
+        
+        button0 = new JButton("");
+        button0.setBounds(326, 834, 53, 21);
+        button0.setBackground(Color.LIGHT_GRAY);
+        button0.setOpaque(false);
+        button0.addActionListener(this);
+        image.add(button0);
+        
+        buttonHash = new JButton("");
+        buttonHash.setBounds(388, 834, 53, 21);
+        buttonHash.setBackground(Color.LIGHT_GRAY);
+        buttonHash.setOpaque(false);
+        buttonHash.addActionListener(this);
+        image.add(buttonHash);
+        
+        buttonStar = new JButton("");
+        buttonStar.setBounds(263, 834, 53, 21);
+        buttonStar.setBackground(Color.LIGHT_GRAY);
+        buttonStar.setOpaque(false);
+        buttonStar.addActionListener(this);
+        image.add(buttonStar);*/
+        
+        cancel = new JButton("");
+        cancel.setBounds(460, 774, 90, 20);
+        cancel.setBackground(Color.RED);
+        cancel.setOpaque(false);
+        cancel.addActionListener(this);
+        image.add(cancel);
+        
+        clear = new JButton("");
+        clear.setBounds(462, 790, 90, 20);
+        clear.setBackground(Color.YELLOW);
+        clear.setOpaque(false);
+        clear.addActionListener(this);
+        image.add(clear);
+        
+        enter = new JButton("");
+        enter.setBounds(465, 812, 90, 20);
+        enter.setBackground(Color.GREEN);
+        enter.setOpaque(false);
+        enter.addActionListener(this);
+        image.add(enter);
+        
+        
+        setSize(900,900);
+        setLocation(300,0);
+       setUndecorated(true);
+        setVisible(true);
+       
+    }
+    
+    public void actionPerformed(ActionEvent ae){
+        
+        if(ae.getSource() == cancel){
+            
+            setVisible(false);
+            new Transaction(pinNumber).setVisible(true);
+            
+        }else if (ae.getSource() == clear){            
+            amountTextField.setText("");
+            
+        }else if(ae.getSource() == enter){
+            String amountNumber = amountTextField.getText();
+            Date date = new Date();
+            if (amountNumber.equals("")){
+                JOptionPane.showMessageDialog(null, "Please enter the amount you want to Withdraw");
+            }else{
+                
+                try{              
+                Conn conn = new Conn();
+                 ResultSet rs = conn.s1.executeQuery("select * from bank where pin_number = '"+pinNumber+"'");
+                    int balance = 0;
+                    while(rs.next()){
+                       if(rs.getString("type").equals("Deposit")){
+                           balance += Integer.parseInt(rs.getString("amount"));
+                     }else{ 
+                         balance -= Integer.parseInt(rs.getString("amount"));
+                       }
+                  
+                  }
+                  
+                  if(ae.getSource()!= cancel && balance < Integer.parseInt(amountNumber)){
+                      JOptionPane.showMessageDialog(null, "Insufficient Balance", "", JOptionPane.WARNING_MESSAGE);
+                      return;
+                  }
+                String query = "insert into bank values('"+pinNumber+"' , '"+date+"' , 'Withdraw'  , '"+amountNumber+"')";
+                conn.s1.executeUpdate(query);
+                JOptionPane.showMessageDialog(null, "Rs. " +amountNumber+ " Withdrawn Successfully");
+                setVisible(false);
+                new Transaction(pinNumber).setVisible(true);
+                  
+                 
+                }catch(Exception e){
+                     System.out.println(e);
+              }
+            
+            }
+            
+        } 
+     
+    }
+    
+
+    
+    public static void main (String[] args){
+       new Withdrawal("");
+    }
+}
